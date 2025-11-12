@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: backend
+    runtime: node
+    region: frankfurt
+    plan: free
+    branch: master
+    buildCommand: |
+      npm ci
+      npx nx build backend --configuration=production
+    startCommand: node dist/apps/backend/main.js
+    autoDeployTrigger: 'checksPass'
+    envVars:
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: frontend
+          envVarKey: RENDER_EXTERNAL_URL
+
+  - type: web
+    name: frontend
+    runtime: static
+    branch: master
+    buildCommand: |
+      node scripts/replace-env.js
+      npx nx build frontend --configuration=production
+    staticPublishPath: dist/apps/frontend/browser
+    autoDeployTrigger: 'checksPass'
+    envVars:
+      - key: BACKEND_URL
+        fromService:
+          type: web
+          name: backend
+          envVarKey: RENDER_EXTERNAL_URL
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin

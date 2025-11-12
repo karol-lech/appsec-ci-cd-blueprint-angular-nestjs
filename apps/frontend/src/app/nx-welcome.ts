@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -337,16 +337,16 @@ import { CommonModule } from '@angular/common';
         margin-top: 1rem;
       }
       #nx-cloud a {
-        border-radius: 0.75rem;
-        color: white;
-        background-color: hsla(214, 62%, 21%, 1);
-        display: inline-block;
+        color: rgba(107, 114, 128, 1);
+        display: block;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
         margin-top: 1.5rem;
-        padding: 0.5rem 1rem;
-        text-align: left;
-        text-decoration: inherit;
+        text-align: right;
       }
-
+      #nx-cloud a:hover {
+        text-decoration: underline;
+      }
       #commands {
         padding: 2.5rem 2rem;
         margin-top: 3.5rem;
@@ -739,10 +739,17 @@ import { CommonModule } from '@angular/common';
                   <span> Enable faster CI & better DX </span>
                 </h2>
               </div>
-              <p>Your Nx Cloud remote cache setup is almost complete.</p>
-
-              <a href="" target="_blank" rel="noreferrer">
-                Click here to finish
+              <p>
+                You can activate distributed tasks executions and caching by
+                running:
+              </p>
+              <pre>nx connect</pre>
+              <a
+                href="https://nx.dev/nx-cloud?utm_source=nx-project"
+                target="_blank"
+                rel="noreferrer"
+              >
+                What is Nx Cloud?
               </a>
             </div>
           </div>
@@ -769,11 +776,11 @@ import { CommonModule } from '@angular/common';
               Build, test and lint your app
             </summary>
             <pre><span># Build</span>
-nx build 
+nx build
 <span># Test</span>
-nx test 
+nx test
 <span># Lint</span>
-nx lint 
+nx lint
 <span># Run them together!</span>
 nx run-many -t build test lint</pre>
           </details>

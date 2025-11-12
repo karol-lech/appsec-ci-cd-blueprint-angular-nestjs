@@ -13,9 +13,8 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
     ],
-    "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
+    "sharedGlobals": []
   },
-  "nxCloudId": "69134eb2ab863a36e8a71c18",
   "plugins": [
     {
       "plugin": "@nx/webpack/plugin",
