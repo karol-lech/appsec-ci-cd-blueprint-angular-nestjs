@@ -16,7 +16,6 @@ services:
           type: web
           name: frontend
           envVarKey: RENDER_EXTERNAL_URL
-
   - type: web
     name: frontend
     runtime: static
@@ -36,3 +35,22 @@ services:
       - path: /*
         name: X-Frame-Options
         value: sameorigin
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self';
+           base-uri 'self';
+           object-src 'none';
+           img-src 'self' data:;
+           connect-src 'self';
+           script-src 'self';
+           style-src 'self';
+           font-src 'self' https://fonts.gstatic.com/;
+           frame-ancestors 'none';
+           require-trusted-types-for 'script';
+           trusted-types angular;"
