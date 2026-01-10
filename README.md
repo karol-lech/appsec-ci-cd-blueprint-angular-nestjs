@@ -29,7 +29,7 @@ Below you can find a list of chosen SPVS controls:
 
 ## This pipeline is compliant with SPVS L1
 The `.github/workflows/secure-pipeline.yml` workflow meets SPVS L1 requirements, especially:
-* Every developer is obliged to acknowledge and comply with endpoint security standards and secure development policy.
+* Every developer is obliged to [acknowledge](docs/docs-acknowledgements.md) and comply with [endpoint security standards](docs/endpoint-security-standards.md) and [secure development policy](secure-development-policy.md).
 * Husky prevents committing secrets in git tracked files, and gitleaks verifies if there are any during pipeline execution
 * Dependency scan is performed and fails a pipeline if high or critical severity is detected.
 * SAST and DAST scanning all apps in the monorepo and failing the pipeline if high or critical severity is detected.
@@ -43,10 +43,14 @@ Check the real-world examples of failed pipelines in the Pull Requests tab. Some
 ### Example 1: Detected the high or critical vulnerability
 Pipeline checks the whole codebase and used npm packages for known vulnerabilities.
 If high or critical severity is detected, then the pipeline fails and prevents the merge.
+![CodeQL alert with command line controlled by user input](assets/readme-example-1-command-injection.png)
+![Failed CodeQL check blocking merge](assets/readme-example-1-blocked-merge.png)
 
 ### Example 2: Detected a secret in a file
 Husky prevents commiting a secret in git tracked files.
 If the developer use `--no-verify` flag when commiting then a pipeline will find it and block the merge.
+![Gitleaks found secret in environment.ts file](assets/readme-example-2-secret-leak.png)
+![Failed CodeQL check blocking merge](assets/readme-example-2-blocked-merge.png)
 
 ## Why do you need this?
 Implementation of OWASP SPVS controls protects the supply chain and security of your pipeline and meet requirements of compliance with modern standards like NIST 800-53.
